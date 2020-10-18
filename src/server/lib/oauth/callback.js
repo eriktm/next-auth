@@ -270,6 +270,6 @@ function _get (provider, accessToken, callback) {
 function _decodeToken (provider, accessToken, refreshToken, idToken, callback) {
   if (!idToken) { throw new Error('Missing JWT ID Token', provider, idToken) }
   const decodedToken = jwtDecode(idToken)
-  const profileData = JSON.stringify(decodedToken)
+  const profileData = JSON.stringify({ idToken, ...decodedToken })
   callback(null, profileData, accessToken, refreshToken, provider)
 }
